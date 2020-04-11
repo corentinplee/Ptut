@@ -2,33 +2,27 @@ $(document).ready(function() {
 	$("#addNew").on('click',function() {
 		$("#tableManager").modal('show');
 	});
-	$("#tableManager").on('hidden.bs.modal',function(){
-		$("translated_word").val("");
-		$("french_word").val("");
-		$("manageBtn").fadeIn();				
-	});
-
 	getExistingData(0,50);
 
 });
 
         //Suppression
         function deleteRow(rowID) {
-			$.ajax({
-				url:'php/Supp.php',
-				method:'POST',
-				dataType: 'text',
-				data: {
-					key:'deleteRow',
-					rowID:rowID
-				}, success: function(response) {
-					$("#french_"+rowID).parent().remove();
-					alert(response);
+        	$.ajax({
+        		url:'php/Supp.php',
+        		method:'POST',
+        		dataType: 'text',
+        		data: {
+        			key:'deleteRow',
+        			rowID:rowID
+        		}, success: function(response) {
+        			$("#french_"+rowID).parent().remove();
+        			alert(response);
 
 
-				}
-			});
-		}
+        		}
+        	});
+        }
         //Récupération de données
         function getExistingData(begin,limit) {
         	$.ajax({
